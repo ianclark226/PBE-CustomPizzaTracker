@@ -1,15 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {GlobalContext } from '../context/GlobalState';
 
 const AddPizza = () => {
     const [text, setText] = useState('');
     const [crust, setCrust] = useState('');
     const [size, setSize] = useState('');
     const [toppings, setToppings] = useState('');
+
+    const { addPizza }  = useContext(GlobalContext);
+
+    const onSubmit = e =>{
+        e.preventDefault();
+
+        const newPizza = {
+            text,
+            crust,
+            size,
+            toppings
+        }    
+
+        addPizza(newPizza);
+    }
     
     return (
       <>
         <h3>Add new Pizza</h3>
-        <form>
+        <form onSubmit={onSubmit}>
           <div class="form-control">
             <label htmlFor="text">Name</label>
             <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter Name" />

@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import  Pizza  from './Pizza';
 
 import {GlobalContext} from '../context/GlobalState';
 
@@ -10,7 +11,7 @@ const PizzaList = () => {
     <>
     <h3>Pizza List</h3>
     <ul className="list">
-        {pizzas.map(pizza => (<li>{pizza.text}, {pizza.crust}, {pizza.size}, {pizza.toppings}  <button className="delete-btn">x</button> </li> ))}
+        {pizzas.map(pizza => (<Pizza key={pizza.id} pizza={pizza} /> ))}
             
        
        
