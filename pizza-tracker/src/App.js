@@ -1,23 +1,23 @@
-import React from 'react';
-import Header from './components/Header';
+import React, {useState} from 'react';
 import './App.css';
 import PizzaList from './components/PizzaList';
-import AddPizza from './components/AddPizza';
+import NewPizza from './components/NewPizza';
 
-import { GlobalProvider } from './context/GlobalState';
+const App = () => {
+const [pizzas, setPizzas] = useState('');
 
-function App() {
-  return (
-    <GlobalProvider>
-   
-      <Header />
-      <div className="container">
-        <AddPizza />
-      <PizzaList />
-      </div>
-  
-    </GlobalProvider>
-  );
+const addPizzaHandler = (pizza) => {
+  setPizzas((prevPizzas) => {
+    return [pizza, ...prevPizzas];
+  })
+}
+
+return (
+  <div> 
+    <NewPizza onAddPizza={addPizzaHandler}/>
+    <PizzaList items={pizzas} />
+  </div>
+);
 }
 
 export default App;

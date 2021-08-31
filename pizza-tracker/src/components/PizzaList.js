@@ -1,22 +1,22 @@
-import React, {useContext} from 'react';
-import  Pizza  from './Pizza';
+import React from 'react';
+import PizzaItem from './PizzaItem';
 
-import {GlobalContext} from '../context/GlobalState';
+const PizzaList = (props) => {
 
-const PizzaList = () => {
-    const {pizzas} = useContext(GlobalContext);
+    if(props.items.length === 0) {
+        return <h2>None</h2>
+    }
 
-   
     return (
-    <>
-    <h3>Pizza List</h3>
-    <ul className="list">
-        {pizzas.map(pizza => (<Pizza key={pizza.id} pizza={pizza} /> ))}
-            
-       
-       
-    </ul>
-    </>
+        <ul className="pizza-list">
+            {props.items.map((pizza) => (
+                <PizzaItem key={pizza.id}
+                title={pizza.title}
+                crust = {pizza.crust}
+                size = {pizza.size}
+                toppings ={pizza.toppings} />
+            ))}
+        </ul>
     )
 }
 
